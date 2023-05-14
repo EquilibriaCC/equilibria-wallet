@@ -1,0 +1,42 @@
+ name: Download Release
+
+ # Controls when the workflow will run
+ on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+ jobs:
+  
+   get_asset:
+
+     runs-on: ubuntu-latest
+
+     steps:
+
+       - name: List Releases
+         run: gh release list --repo adminxeq/xeq-wallet
+         env:
+           GITHUB_TOKEN: ${{ secrets.WORKFLOW }}
+
+       - name: Fetch asset
+         run: gh release download --repo adminxeq/xeq-wallet v17.2.2
+         env:
+           GITHUB_TOKEN: ${{ secrets.WORKFLOW }}
+
+       - name: See what we downloaded
+         run: ls
+        
+       - name: Upload artifacts
+         uses: actions/upload-artifact@v1
+         with:
+             name: ${{ runner.OS }}
+             path: .
+             
+       - name: Release
+         uses: softprops/action-gh-release@v1
+         with:
+          files: ./*
+         env:
+          GITHUB_TOKEN: ${{ secrets.WORKFLOW }}
