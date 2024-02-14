@@ -3,7 +3,7 @@
  # Controls when the workflow will run
  on:
   push:
-    # Sequence of patterns matched against refs/tags
+    # Sequence of patterns matched against refs/tags ver
     tags:
     - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
