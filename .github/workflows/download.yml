@@ -21,7 +21,7 @@
            GITHUB_TOKEN: ${{ secrets.WORKFLOW }}
 
        - name: Fetch asset
-         run: gh release download --repo adminxeq/xeq-wallet v19.1.4
+         run: gh release download --repo adminxeq/xeq-wallet v19.1.5
          env:
            GITHUB_TOKEN: ${{ secrets.WORKFLOW }}
 
